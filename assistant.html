@@ -502,6 +502,14 @@
       <label class="field-label">INSTAGRAM</label>
       <input type="text" id="cfg-instagram" placeholder="@divines_esthetique">
     </div>
+    <div class="form-group">
+      <label class="field-label">SITE WEB</label>
+      <input type="text" id="cfg-website" placeholder="www.divines-esthetique.ch">
+    </div>
+    <div class="form-group">
+      <label class="field-label">LIEN DE RÉSERVATION (SALONKEE)</label>
+      <input type="text" id="cfg-booking" placeholder="salonkee.ch/salon/divines-esthetique">
+    </div>
     <div class="form-group" style="margin-bottom:0;">
       <label class="field-label">HORAIRES D'OUVERTURE</label>
       <textarea id="cfg-hours" placeholder="Lun-Ven: 9h-19h&#10;Samedi: 9h-17h&#10;Dimanche: Fermé" style="min-height:80px;"></textarea>
@@ -562,20 +570,16 @@ const DEFAULTS = {
   pin: '1234',
   apiKey: '',
   name: 'Divines Esthétique',
-  desc: "Salon d'esthétique professionnel proposant des soins du visage, épilation, manucure et pédicure.",
-  location: '',
-  phone: '',
+  desc: "Salon d'esthétique situé au cœur de Genève, spécialisé dans les soins du visage, ongles, épilation et bien-être. Ambiance chaleureuse et professionnelle.",
+  location: 'Rue du Vieux-Billard 9, 1205 Genève',
+  phone: '+41 76 522 09 74',
   instagram: '@divines_esthetique',
-  hours: "Lundi–Vendredi: 9h–19h\nSamedi: 9h–17h\nDimanche: Fermé",
-  services: [
-    { name: 'Soin du visage', price: 'CHF 80' },
-    { name: 'Épilation jambes', price: 'CHF 45' },
-    { name: 'Manucure', price: 'CHF 35' },
-    { name: 'Pédicure', price: 'CHF 50' },
-    { name: 'Sourcils & Cils', price: 'CHF 30' }
-  ],
+  website: 'www.divines-esthetique.ch',
+  booking: 'https://salonkee.ch/salon/divines-esthetique?lang=fr',
+  hours: "À confirmer — contacter le salon",
+  services: [],
   tone: 'chaleureuse',
-  instructions: ''
+  instructions: "Pour prendre rendez-vous, toujours diriger le client vers le lien de réservation en ligne : salonkee.ch/salon/divines-esthetique — ou lui donner le numéro +41 76 522 09 74."
 };
 
 // ─── State ─────────────────────────────────────────────────────────────────
@@ -696,26 +700,28 @@ function buildSystemPrompt() {
     ? cfg.services.map(s => `  • ${s.name}${s.price ? ' : ' + s.price : ''}`).join('\n')
     : '  (aucun service configuré)';
 
-  return `Tu es l'assistante virtuelle de ${cfg.name}, un salon d'esthétique. Tu réponds aux messages reçus sur ${currentPlatform === 'instagram' ? 'Instagram' : 'WhatsApp'}.
+  return `Tu es l'assistante virtuelle de ${cfg.name}, un salon d'esthétique à Genève. Tu réponds aux messages reçus sur ${currentPlatform === 'instagram' ? 'Instagram' : 'WhatsApp'}.
 
 INFORMATIONS DU SALON :
 Nom : ${cfg.name}
 ${cfg.desc ? 'Description : ' + cfg.desc : ''}
-${cfg.location ? 'Adresse/Localisation : ' + cfg.location : ''}
-${cfg.phone ? 'Téléphone / WhatsApp : ' + cfg.phone : ''}
-${cfg.instagram ? 'Instagram : ' + cfg.instagram : ''}
+Adresse : ${cfg.location || 'Rue du Vieux-Billard 9, 1205 Genève'}
+Téléphone / WhatsApp : ${cfg.phone || '+41 76 522 09 74'}
+Instagram : ${cfg.instagram || '@divines_esthetique'}
+Site web : ${cfg.website || 'www.divines-esthetique.ch'}
+Réservation en ligne : ${cfg.booking || 'salonkee.ch/salon/divines-esthetique'}
 
 NOS SERVICES ET TARIFS :
 ${services}
 
 HORAIRES D'OUVERTURE :
-${cfg.hours || '(horaires non configurés — inviter à nous contacter)'}
+${cfg.hours || '(à confirmer — inviter à contacter le salon)'}
 
 RÈGLES ABSOLUES :
 - Réponds TOUJOURS en français
 - Sois ${toneMap[cfg.tone] || 'chaleureuse et professionnelle'}
 - Réponses courtes et adaptées aux réseaux sociaux (2 à 4 phrases maximum)
-- Si le client souhaite prendre rendez-vous, propose-lui les disponibilités ou invite-le à appeler/écrire pour réserver
+- Pour toute demande de rendez-vous : donner le lien de réservation en ligne ${cfg.booking || 'salonkee.ch/salon/divines-esthetique'} ET/OU le numéro ${cfg.phone || '+41 76 522 09 74'}
 - Utilise 1 ou 2 emojis maximum (style esthétique : ✨ 💆‍♀️ 🌸 💅 🌿)
 - Ne fais jamais de promesse que le salon ne peut pas tenir
 - Si tu ne sais pas, dis au client de contacter le salon directement
@@ -951,6 +957,8 @@ function loadSettingsForm() {
   document.getElementById('cfg-location').value = c.location || '';
   document.getElementById('cfg-phone').value = c.phone || '';
   document.getElementById('cfg-instagram').value = c.instagram || '';
+  document.getElementById('cfg-website').value = c.website || '';
+  document.getElementById('cfg-booking').value = c.booking || '';
   document.getElementById('cfg-hours').value = c.hours || '';
   document.getElementById('cfg-tone').value = c.tone || 'chaleureuse';
   document.getElementById('cfg-instructions').value = c.instructions || '';
@@ -1003,6 +1011,8 @@ function saveConfig() {
   c.location = document.getElementById('cfg-location').value.trim();
   c.phone = document.getElementById('cfg-phone').value.trim();
   c.instagram = document.getElementById('cfg-instagram').value.trim();
+  c.website = document.getElementById('cfg-website').value.trim();
+  c.booking = document.getElementById('cfg-booking').value.trim();
   c.hours = document.getElementById('cfg-hours').value.trim();
   c.tone = document.getElementById('cfg-tone').value;
   c.instructions = document.getElementById('cfg-instructions').value.trim();
