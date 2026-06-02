@@ -570,14 +570,129 @@ const DEFAULTS = {
   pin: '1234',
   apiKey: '',
   name: 'Divines Esthétique',
-  desc: "Salon d'esthétique situé au cœur de Genève, spécialisé dans les soins du visage, ongles, épilation et bien-être. Ambiance chaleureuse et professionnelle.",
+  desc: "Salon d'esthétique situé au cœur de Genève, spécialisé dans les soins du visage, fils tenseurs, extensions de cils, épilation laser, maquillage semi-permanent, beauté des mains et des pieds. Ambiance chaleureuse et professionnelle.",
   location: 'Rue du Vieux-Billard 9, 1205 Genève',
   phone: '+41 76 522 09 74',
   instagram: '@divines_esthetique',
   website: 'www.divines-esthetique.ch',
   booking: 'https://salonkee.ch/salon/divines-esthetique?lang=fr',
-  hours: "À confirmer — contacter le salon",
-  services: [],
+  hours: "Lundi: 09:00–19:00\nMardi: 09:00–19:00\nMercredi: 09:00–18:00\nJeudi: 09:00–19:00\nVendredi: 09:00–19:00\nSamedi: 08:00–17:00\nDimanche: Fermé",
+  services: [
+    { name: '🪡 FILS TENSEURS', price: '', category: true },
+    { name: 'Soins du Visage + Fils tenseurs', price: 'CHF 110' },
+    { name: 'Microneedling + Fils tenseurs', price: 'CHF 130' },
+    { name: 'Hollywood Carbonpeel + Fils tenseurs', price: 'CHF 160' },
+
+    { name: '👁️ BEAUTÉ DU REGARD', price: '', category: true },
+    { name: 'Packs Browlift', price: 'à partir de CHF 120' },
+    { name: 'Extension de cils - Cils à cils naturel', price: 'CHF 65' },
+    { name: 'Extension de cils - 3C, 4D, 5D', price: 'CHF 75' },
+    { name: 'Extension de cils mixte', price: 'CHF 85' },
+    { name: 'Extension de cils volume', price: 'CHF 95' },
+    { name: 'Remplissage extension de cils', price: 'à partir de CHF 40' },
+    { name: 'Dépose des extensions de cils', price: 'CHF 20' },
+    { name: 'Korean Lash Lift', price: 'à partir de CHF 70' },
+    { name: 'Rehaussement de cils - Lash Lift', price: 'à partir de CHF 60' },
+    { name: 'Brown lamination / Browlift', price: 'CHF 70' },
+    { name: 'Restructuration + Épilation des sourcils', price: 'CHF 30' },
+    { name: 'Restructuration et teinture des sourcils', price: 'CHF 45' },
+    { name: 'Restructuration + Rehaussement + Botox', price: 'CHF 105' },
+
+    { name: '🧖 SOINS VISAGE', price: '', category: true },
+    { name: 'Soins du Visage', price: 'CHF 80' },
+    { name: 'Microneedling', price: 'CHF 120' },
+    { name: 'Hollywood Carbonpeel', price: 'CHF 130' },
+    { name: 'Hydra Lips', price: 'CHF 70' },
+
+    { name: '💉 SOINS EXPERTS / SKIN BOOSTERS', price: '', category: true },
+    { name: 'Soin Nettoyant Profond + Carboxy Thérapie (PROMO)', price: 'CHF 120' },
+    { name: 'Soin Anti-Acné Purifiant + Carboxy Thérapie', price: 'CHF 150' },
+    { name: 'Microneedling + Carboxy Thérapie (PROMO)', price: 'CHF 185' },
+    { name: 'Anti-Age V-Tox + Carboxy Thérapie (PROMO)', price: 'CHF 145' },
+
+    { name: '💄 MAQUILLAGE SEMI-PERMANENT', price: '', category: true },
+    { name: 'Powder Brows', price: 'CHF 220' },
+    { name: 'Powder Brows - Retouche', price: 'à partir de CHF 60' },
+    { name: 'Baby Liner / Lash Liner', price: 'CHF 160' },
+    { name: 'Blushlips - 1ère Séance', price: 'CHF 230' },
+    { name: 'Blushlips - Retouche', price: 'à partir de CHF 60' },
+
+    { name: '🪙 ÉPILATION À LA CIRE', price: '', category: true },
+    { name: 'Épilation cire - Menton', price: 'CHF 15' },
+    { name: 'Épilation cire - Lèvre supérieure', price: 'CHF 10' },
+    { name: 'Épilation cire - Bas du visage', price: 'CHF 20' },
+    { name: 'Épilation cire - Dos complet', price: 'CHF 80' },
+    { name: 'Épilation cire - Aisselles', price: 'CHF 30' },
+    { name: 'Épilation cire - Bras', price: 'à partir de CHF 20' },
+    { name: 'Épilation cire - Abdomen ou torse', price: 'CHF 40' },
+    { name: 'Épilation cire - Bikini', price: 'à partir de CHF 45' },
+    { name: 'Épilation cire - Jambes', price: 'à partir de CHF 50' },
+    { name: 'Épilation cire - Sourcils', price: 'CHF 15' },
+
+    { name: '🧵 ÉPILATION AU FIL', price: '', category: true },
+    { name: 'Épilation fil - Sourcils', price: 'CHF 15' },
+    { name: 'Épilation fil - Lèvre supérieure', price: 'CHF 10' },
+
+    { name: '⚡ PACKS LASER', price: '', category: true },
+    { name: 'Épilation laser (PROMO)', price: 'à partir de CHF 90' },
+    { name: 'Laser - Lèvre supérieure + Aisselles', price: 'CHF 80' },
+    { name: 'Laser - Maillot intégral + Aisselles', price: 'CHF 120' },
+    { name: 'Laser - Maillot intégral + Aisselles + Visage', price: 'CHF 160' },
+    { name: 'Laser - Demi-jambes + Maillot intégral + Aisselles', price: 'CHF 150' },
+    { name: 'Laser - Jambes complètes + Aisselles', price: 'CHF 120' },
+    { name: 'Laser - Jambes complètes + Maillot simple', price: 'CHF 115' },
+    { name: 'Laser - Jambes complètes + Aisselles + Visage', price: 'CHF 180' },
+    { name: 'Laser - Jambes complètes + Aisselles + Maillot intégral', price: 'CHF 180' },
+
+    { name: '🔦 ÉPILATION LASER FEMME', price: '', category: true },
+    { name: 'Laser femme - Menton', price: 'CHF 30' },
+    { name: 'Laser femme - Lèvre supérieure', price: 'CHF 40' },
+    { name: 'Laser femme - Bas du visage', price: 'CHF 70' },
+    { name: 'Laser femme - Cou', price: 'CHF 45' },
+    { name: 'Laser femme - Aisselles', price: 'CHF 60' },
+    { name: 'Laser femme - Épaules', price: 'CHF 55' },
+    { name: 'Laser femme - Bras', price: 'à partir de CHF 45' },
+    { name: 'Laser femme - Ligne abdominale', price: 'CHF 25' },
+    { name: 'Laser femme - Maillot', price: 'à partir de CHF 85' },
+    { name: 'Laser femme - Jambes', price: 'à partir de CHF 70' },
+    { name: 'Laser femme - Corps entier', price: 'CHF 300' },
+    { name: 'Laser femme - Abdomen', price: 'CHF 50' },
+
+    { name: '👨 ÉPILATION LASER HOMME', price: '', category: true },
+    { name: 'Laser homme - Dos complet', price: 'à partir de CHF 120' },
+    { name: 'Laser homme - Abdomen', price: 'CHF 70' },
+    { name: 'Laser homme - Aisselles', price: 'CHF 60' },
+    { name: 'Laser homme - Poitrine complète', price: 'à partir de CHF 95' },
+    { name: 'Laser homme - Corps entier', price: 'à partir de CHF 350' },
+    { name: 'Laser homme - Visage', price: 'CHF 70' },
+
+    { name: '🖤 DÉTATOUAGE', price: '', category: true },
+    { name: 'Détatouage laser', price: 'à partir de CHF 80' },
+
+    { name: '💅 BEAUTÉ DES MAINS', price: '', category: true },
+    { name: 'Offre du mois mains', price: 'à partir de CHF 40' },
+    { name: 'Ongles semi-permanent', price: 'à partir de CHF 40' },
+    { name: 'Ongles en Gel', price: 'à partir de CHF 60' },
+    { name: 'Dépose Gel (Manucure simple inclus)', price: 'CHF 40' },
+    { name: 'Ongle cassé (mains)', price: 'CHF 10' },
+
+    { name: '🦶 BEAUTÉ DES PIEDS', price: '', category: true },
+    { name: 'Offre du mois pieds', price: 'à partir de CHF 50' },
+    { name: 'Pédicure simple', price: 'CHF 45' },
+    { name: 'Beauté des pieds', price: 'CHF 50' },
+    { name: 'Beauté des pieds + Gel ou semi-permanent', price: 'CHF 60' },
+    { name: 'Beauté des pieds + extension américaine', price: 'CHF 70' },
+    { name: 'Dépose Gel (Pédicure simple inclus)', price: 'CHF 40' },
+    { name: 'Ongle cassé (pieds)', price: 'CHF 10' },
+
+    { name: '👧 SOINS ADOLESCENTS (14-17 ans)', price: '', category: true },
+    { name: 'Ado - Épilation sourcils', price: 'CHF 10' },
+    { name: 'Ado - Épilation lèvre supérieure', price: 'CHF 6' },
+    { name: 'Ado - Épilation aisselles', price: 'CHF 15' },
+    { name: 'Ado - Épilation maillot', price: 'à partir de CHF 20' },
+    { name: 'Ado - Rehaussement de cils', price: 'à partir de CHF 40' },
+    { name: 'Ado - Soin adolescent', price: 'CHF 45' }
+  ],
   tone: 'chaleureuse',
   instructions: "Pour prendre rendez-vous, toujours diriger le client vers le lien de réservation en ligne : salonkee.ch/salon/divines-esthetique — ou lui donner le numéro +41 76 522 09 74."
 };
@@ -697,8 +812,11 @@ function buildSystemPrompt() {
     luxe: 'élégante, raffinée et haut de gamme'
   };
   const services = cfg.services.length
-    ? cfg.services.map(s => `  • ${s.name}${s.price ? ' : ' + s.price : ''}`).join('\n')
-    : '  (aucun service configuré)';
+    ? cfg.services.map(s => s.category
+        ? `\n${s.name}`
+        : `  • ${s.name}${s.price ? ' : ' + s.price : ''}`)
+      .join('\n')
+    : '  (aucun service configuré — à configurer dans Paramètres)';
 
   return `Tu es l'assistante virtuelle de ${cfg.name}, un salon d'esthétique à Genève. Tu réponds aux messages reçus sur ${currentPlatform === 'instagram' ? 'Instagram' : 'WhatsApp'}.
 
@@ -848,9 +966,18 @@ function initNewApptForm() {
 
   const cfg = getConfig();
   const sel = document.getElementById('appt-service');
-  sel.innerHTML = cfg.services.length
-    ? cfg.services.map(s => `<option value="${esc(s.name)}">${esc(s.name)}${s.price ? ' — ' + esc(s.price) : ''}</option>`).join('')
-    : '<option value="">Aucun service — Configurer dans Paramètres</option>';
+  const realServices = cfg.services.filter(s => !s.category);
+  if (realServices.length) {
+    let html = '';
+    let lastCat = '';
+    cfg.services.forEach(s => {
+      if (s.category) { lastCat = s.name; return; }
+      html += `<option value="${esc(s.name)}"${lastCat ? ` data-cat="${esc(lastCat)}"` : ''}>${esc(s.name)}${s.price ? ' — ' + esc(s.price) : ''}</option>`;
+    });
+    sel.innerHTML = html;
+  } else {
+    sel.innerHTML = '<option value="">Aucun service — Configurer dans Paramètres</option>';
+  }
 }
 
 function saveAppointment() {
@@ -973,12 +1100,14 @@ function renderServicesList() {
     el.innerHTML = '<p style="font-size:13px;color:#5a3a1a;font-style:italic;margin-bottom:12px;">Aucun service — ajoutez-en ci-dessous</p>';
     return;
   }
-  el.innerHTML = services.map((s, i) => `
-    <div class="service-item">
-      <span class="service-name">${esc(s.name)}</span>
-      <span class="service-price">${esc(s.price)}</span>
-      <span class="service-del" onclick="removeService(${i})" title="Supprimer">✕</span>
-    </div>`).join('');
+  el.innerHTML = services.map((s, i) => s.category
+    ? `<div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:#C49A5A;margin:14px 0 6px;padding-top:8px;border-top:1px solid #3d2410;">${esc(s.name)}</div>`
+    : `<div class="service-item">
+        <span class="service-name" style="font-size:13px;">${esc(s.name)}</span>
+        <span class="service-price">${esc(s.price)}</span>
+        <span class="service-del" onclick="removeService(${i})" title="Supprimer">✕</span>
+      </div>`
+  ).join('');
 }
 
 function addService() {
