@@ -1006,8 +1006,18 @@ function saveAppointment() {
 
   appts.unshift(appt);
   saveAppts(appts);
-  showToast('Rendez-vous enregistré !');
   showScreen('screen-appointments');
+
+  // Offer to send WhatsApp confirmation immediately
+  if (appt.telephone) {
+    setTimeout(() => {
+      if (confirm(`Rendez-vous enregistré !\n\nEnvoyer la confirmation WhatsApp à ${appt.nom} ?`)) {
+        sendWhatsApp(appt.id);
+      }
+    }, 300);
+  } else {
+    showToast('Rendez-vous enregistré !');
+  }
 }
 
 function renderAppointments() {
@@ -1040,11 +1050,18 @@ function renderAppointments() {
         ${a.notes ? '<br>💬 ' + esc(a.notes) : ''}
       </div>
       <div class="appt-actions">
-        ${a.statut === 'en_attente' ? `<button class="appt-action-btn btn-confirmer" onclick="setApptStatus('${a.id}','confirme')">Confirmer</button>` : ''}
+        ${a.statut === 'en_attente' ? `<button class="appt-action-btn btn-confirmer" onclick="confirmAndWhatsApp('${a.id}')">Confirmer</button>` : ''}
         ${a.statut !== 'termine' && a.statut !== 'annule' ? `<button class="appt-action-btn btn-terminer" onclick="setApptStatus('${a.id}','termine')">Terminé</button>` : ''}
         ${a.statut !== 'annule' ? `<button class="appt-action-btn btn-annuler" onclick="setApptStatus('${a.id}','annule')">Annuler</button>` : ''}
         <button class="appt-action-btn btn-supprimer" onclick="delAppt('${a.id}')">✕</button>
       </div>
+      ${a.telephone && a.statut !== 'annule' ? `
+      <div style="margin-top:10px;">
+        <button class="appt-action-btn" onclick="sendWhatsApp('${a.id}')"
+          style="color:#25D366; border-color:#25D366; width:100%; text-align:center; padding:8px;">
+          💬 Envoyer confirmation WhatsApp
+        </button>
+      </div>` : ''}
     </div>`).join('');
 }
 
@@ -1058,6 +1075,46 @@ function setApptStatus(id, statut) {
   updateDashboard();
   const msgs = { confirme: 'Confirmé !', termine: 'Terminé !', annule: 'Annulé' };
   showToast(msgs[statut] || 'Mis à jour');
+}
+
+function confirmAndWhatsApp(id) {
+  setApptStatus(id, 'confirme');
+  const appt = getAppts().find(a => a.id === id);
+  if (appt && appt.telephone) {
+    setTimeout(() => {
+      if (confirm(`Envoyer la confirmation WhatsApp à ${appt.nom} ?`)) {
+        sendWhatsApp(id);
+      }
+    }, 200);
+  }
+}
+
+function sendWhatsApp(id) {
+  const appt = getAppts().find(a => a.id === id);
+  if (!appt) return;
+  if (!appt.telephone) { showToast('Numéro de téléphone manquant'); return; }
+
+  const jours = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  const d = new Date(appt.date + 'T00:00:00');
+  const jourNom = jours[d.getDay()];
+
+  const msg =
+`Bonjour ${appt.nom} ! ✨
+
+Votre rendez-vous chez Divines Esthétique est confirmé :
+📅 ${jourNom} ${fmtDate(appt.date)} à ${appt.heure}
+✨ ${appt.service}
+
+📍 Rue du Vieux-Billard 9, 1205 Genève
+🔑 Code : 1721# (il faut pousser deux fois la porte pour qu'elle s'ouvre)
+
+À très bientôt ! 🌸
+— Divines Esthétique`;
+
+  // Clean phone number for wa.me (digits + leading +)
+  const phone = appt.telephone.replace(/[\s\-().]/g, '');
+  const url = `https://wa.me/${encodeURIComponent(phone)}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
 }
 
 function delAppt(id) {
