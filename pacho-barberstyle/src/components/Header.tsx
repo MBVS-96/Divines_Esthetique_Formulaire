@@ -3,6 +3,7 @@ import { Menu, Phone, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { BUSINESS } from "@/lib/config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { SectionLink } from "./SectionLink";
 import { cn } from "@/lib/cn";
 
 const SECTIONS = [
@@ -32,22 +33,22 @@ export function Header() {
       )}
     >
       <div className="container-x flex h-16 items-center justify-between gap-4">
-        <a href="#top" className="flex flex-col leading-none">
+        <SectionLink id="top" className="flex flex-col leading-none">
           <span className="font-display text-xl tracking-[0.2em] text-cream">PACHO</span>
           <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">
             Barberstyle
           </span>
-        </a>
+        </SectionLink>
 
         <nav className="hidden items-center gap-7 md:flex">
           {SECTIONS.map((s) => (
-            <a
+            <SectionLink
               key={s.id}
-              href={`#${s.id}`}
+              id={s.id}
               className="text-xs font-semibold uppercase tracking-widest text-cream/70 transition-colors hover:text-gold"
             >
               {t.nav[s.key]}
-            </a>
+            </SectionLink>
           ))}
         </nav>
 
@@ -57,9 +58,9 @@ export function Header() {
             <Phone className="h-3.5 w-3.5" />
             {BUSINESS.phoneDisplay}
           </a>
-          <a href="#reserver" className="btn-gold px-4 py-2 text-xs">
+          <SectionLink id="reserver" className="btn-gold px-4 py-2 text-xs">
             {t.nav.booking}
-          </a>
+          </SectionLink>
         </div>
 
         <button
@@ -77,14 +78,14 @@ export function Header() {
         <div className="border-t border-ink-700 bg-ink-950 md:hidden">
           <nav className="container-x flex flex-col py-4">
             {SECTIONS.map((s) => (
-              <a
+              <SectionLink
                 key={s.id}
-                href={`#${s.id}`}
-                onClick={() => setOpen(false)}
+                id={s.id}
+                onNavigate={() => setOpen(false)}
                 className="border-b border-ink-800 py-3 text-sm font-semibold uppercase tracking-widest text-cream/80"
               >
                 {t.nav[s.key]}
-              </a>
+              </SectionLink>
             ))}
             <div className="flex items-center justify-between pt-4">
               <LanguageSwitcher />

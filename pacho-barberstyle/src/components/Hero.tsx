@@ -1,5 +1,6 @@
 import { CalendarCheck, Clock, MapPin } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { SectionLink } from "./SectionLink";
 
 export function Hero() {
   const { t } = useI18n();
@@ -32,12 +33,12 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/70">{t.hero.pitch}</p>
 
           <div className="mt-9 flex flex-wrap gap-3">
-            <a href="#reserver" className="btn-gold">
+            <SectionLink id="reserver" className="btn-gold">
               {t.hero.cta}
-            </a>
-            <a href="#services" className="btn-outline">
+            </SectionLink>
+            <SectionLink id="services" className="btn-outline">
               {t.hero.ctaSecondary}
-            </a>
+            </SectionLink>
           </div>
 
           <ul className="mt-12 grid gap-4 text-sm text-cream/60 sm:grid-cols-3">

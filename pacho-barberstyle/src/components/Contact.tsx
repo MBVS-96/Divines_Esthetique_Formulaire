@@ -1,6 +1,6 @@
 import { Clock, Instagram, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import { BUSINESS, WHATSAPP_LINK } from "@/lib/config";
+import { BUSINESS, STANDALONE, WHATSAPP_LINK } from "@/lib/config";
 
 export function Contact() {
   const { t } = useI18n();
@@ -60,13 +60,34 @@ export function Contact() {
           </div>
 
           <div className="overflow-hidden rounded-lg border border-ink-700">
-            <iframe
-              title={`${BUSINESS.name} — ${BUSINESS.mapsQuery}`}
-              src={embedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-[340px] w-full grayscale-[0.6] contrast-125 lg:h-full lg:min-h-[420px]"
-            />
+            {STANDALONE ? (
+              // Third-party embeds are blocked in the single-file demo build.
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-[340px] flex-col items-center justify-center gap-3 bg-[radial-gradient(ellipse_at_center,#1a1a1d,#0a0a0b)] text-center lg:h-full lg:min-h-[420px]"
+              >
+                <MapPin className="h-8 w-8 text-gold" />
+                <span className="font-display text-2xl tracking-wide text-cream">
+                  {BUSINESS.street}
+                </span>
+                <span className="text-sm text-cream/50">
+                  {BUSINESS.postalCode} {BUSINESS.city}
+                </span>
+                <span className="mt-2 text-xs uppercase tracking-widest text-gold">
+                  {t.contact.itinerary}
+                </span>
+              </a>
+            ) : (
+              <iframe
+                title={`${BUSINESS.name} — ${BUSINESS.mapsQuery}`}
+                src={embedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-[340px] w-full grayscale-[0.6] contrast-125 lg:h-full lg:min-h-[420px]"
+              />
+            )}
           </div>
         </div>
       </div>

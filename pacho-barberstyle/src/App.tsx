@@ -1,15 +1,19 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { I18nProvider } from "@/lib/i18n";
 import { Home } from "@/pages/Home";
 import { CancelPage } from "@/pages/CancelPage";
 import { AdminPage } from "@/pages/AdminPage";
 import { LegalPage } from "@/pages/LegalPage";
 import { DemoBanner } from "@/components/DemoBanner";
+import { STANDALONE } from "@/lib/config";
+
+// The single-file demo has no server to fall back to, so it routes on the hash.
+const Router = STANDALONE ? HashRouter : BrowserRouter;
 
 export default function App() {
   return (
     <I18nProvider>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/annuler" element={<CancelPage />} />
@@ -19,7 +23,7 @@ export default function App() {
           <Route path="*" element={<Home />} />
         </Routes>
         <DemoBanner />
-      </BrowserRouter>
+      </Router>
     </I18nProvider>
   );
 }

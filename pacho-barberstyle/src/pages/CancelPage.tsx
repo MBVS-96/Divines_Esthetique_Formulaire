@@ -105,7 +105,7 @@ export function CancelPage() {
             <div className="text-center">
               <CheckCircle2 className="mx-auto h-12 w-12 text-gold" />
               <p className="mt-5 text-cream/80">{t.cancel.done}</p>
-              <Link to="/#reserver" className="btn-gold mt-6">
+              <Link to="/" className="btn-gold mt-6">
                 {t.cancel.rebook}
               </Link>
             </div>

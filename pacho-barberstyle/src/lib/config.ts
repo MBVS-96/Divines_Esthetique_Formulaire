@@ -24,6 +24,20 @@ export const BUSINESS = {
 
 export const WHATSAPP_LINK = `https://wa.me/${BUSINESS.phone.replace(/\D/g, "")}`;
 
+/**
+ * Single-file demo build: hash routing instead of history routing, and no
+ * third-party embeds. Lets the whole site be shared as one HTML file that
+ * opens from anywhere without a server.
+ */
+export const STANDALONE = import.meta.env.VITE_STANDALONE === "1";
+
+/** Base for links that have to survive both routing modes. */
+export function linkBase(): string {
+  return STANDALONE
+    ? `${window.location.origin}${window.location.pathname}#`
+    : window.location.origin;
+}
+
 export const DEFAULT_SETTINGS: Settings = {
   timezone: BUSINESS.timezone,
   slotStepMin: 15,

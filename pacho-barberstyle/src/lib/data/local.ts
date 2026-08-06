@@ -10,7 +10,7 @@ import type {
   Service,
   Settings,
 } from "../types";
-import { DEFAULT_AVAILABILITY, DEFAULT_SERVICES, DEFAULT_SETTINGS } from "../config";
+import { DEFAULT_AVAILABILITY, DEFAULT_SERVICES, DEFAULT_SETTINGS, linkBase } from "../config";
 import { computeSlots, findOpenDays, isSlotBookable } from "../availability";
 import {
   generateReference,
@@ -121,7 +121,7 @@ function write(store: Store): void {
 }
 
 function baseUrl(): string {
-  return window.location.origin;
+  return linkBase();
 }
 
 const delay = (ms = 120) => new Promise((r) => setTimeout(r, ms));
