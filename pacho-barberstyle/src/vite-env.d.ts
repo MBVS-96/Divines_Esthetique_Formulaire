@@ -1,5 +1,8 @@
 /// <reference types="vite/client" />
 
+/** Build timestamp, injected by vite.config.ts. */
+declare const __BUILD_STAMP__: string;
+
 interface ImportMetaEnv {
   readonly VITE_SUPABASE_URL?: string;
   readonly VITE_SUPABASE_ANON_KEY?: string;

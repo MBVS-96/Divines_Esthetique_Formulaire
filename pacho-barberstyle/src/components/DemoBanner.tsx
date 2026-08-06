@@ -23,6 +23,7 @@ export function DemoBanner() {
       >
         {t.common.demoReset}
       </button>
+      <span className="text-gold/50">build {__BUILD_STAMP__}</span>
     </div>
   );
 }
