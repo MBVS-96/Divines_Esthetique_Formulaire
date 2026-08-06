@@ -38,6 +38,8 @@ interface I18nValue {
   formatDate: (date: Date, opts?: Intl.DateTimeFormatOptions) => string;
   formatTime: (date: Date) => string;
   formatPrice: (chf: number) => string;
+  /** 30 → "30 min", 60 → "1h", 90 → "1h30". */
+  formatDuration: (minutes: number) => string;
 }
 
 const I18nContext = createContext<I18nValue | null>(null);
@@ -86,6 +88,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
           minimumFractionDigits: 0,
           maximumFractionDigits: 2,
         }).format(chf),
+      formatDuration: (minutes) => {
+        if (minutes < 60) return `${minutes} ${DICTS[lang].services.duration}`;
+        const hours = Math.floor(minutes / 60);
+        const rest = minutes % 60;
+        return rest === 0 ? `${hours}h` : `${hours}h${String(rest).padStart(2, "0")}`;
+      },
     };
   }, [lang, setLang]);
 

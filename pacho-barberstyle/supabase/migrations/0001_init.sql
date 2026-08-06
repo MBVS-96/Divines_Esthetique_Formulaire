@@ -492,13 +492,13 @@ insert into availability_rules (weekday, open_minute, close_minute, enabled) val
 on conflict (weekday) do nothing;
 
 insert into services (slug, duration_min, price_chf, show_price, at_home, sort_order, name, description) values
-  ('coupe', 30, 25, true, false, 1,
+  ('coupe', 60, 25, true, false, 1,
    '{"fr":"Coupe","en":"Haircut","es":"Corte"}'::jsonb,
    '{"fr":"Coupe aux ciseaux ou à la tondeuse, contours nets, finition et coiffage.","en":"Scissor or clipper cut, sharp outline, finish and styling.","es":"Corte a tijera o máquina, contornos definidos, acabado y peinado."}'::jsonb),
-  ('barbe', 20, 15, true, false, 2,
+  ('barbe', 30, 15, true, false, 2,
    '{"fr":"Barbe","en":"Beard","es":"Barba"}'::jsonb,
    '{"fr":"Taille et dessin de la barbe, serviette chaude, huile de finition.","en":"Beard trim and line-up, hot towel, finishing oil.","es":"Recorte y perfilado de barba, toalla caliente, aceite de acabado."}'::jsonb),
-  ('coupe-barbe', 45, 35, true, false, 3,
+  ('coupe-barbe', 90, 35, true, false, 3,
    '{"fr":"Coupe + Barbe","en":"Haircut + Beard","es":"Corte + Barba"}'::jsonb,
    '{"fr":"La formule complète : coupe, barbe travaillée et finitions.","en":"The full service: haircut, styled beard and finishing touches.","es":"El servicio completo: corte, barba trabajada y acabados."}'::jsonb),
   ('vip', 75, null, false, true, 4,

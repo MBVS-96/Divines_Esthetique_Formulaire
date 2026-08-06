@@ -64,7 +64,7 @@ export const DEFAULT_SERVICES: Service[] = [
   {
     id: "svc-coupe",
     slug: "coupe",
-    durationMin: 30,
+    durationMin: 60,
     priceChf: 25,
     showPrice: true,
     atHome: false,
@@ -80,7 +80,7 @@ export const DEFAULT_SERVICES: Service[] = [
   {
     id: "svc-barbe",
     slug: "barbe",
-    durationMin: 20,
+    durationMin: 30,
     priceChf: 15,
     showPrice: true,
     atHome: false,
@@ -96,7 +96,7 @@ export const DEFAULT_SERVICES: Service[] = [
   {
     id: "svc-coupe-barbe",
     slug: "coupe-barbe",
-    durationMin: 45,
+    durationMin: 90,
     priceChf: 35,
     showPrice: true,
     atHome: false,

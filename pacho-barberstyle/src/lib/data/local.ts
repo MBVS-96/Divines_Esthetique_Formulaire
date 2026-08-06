@@ -37,7 +37,9 @@ import { todayKey, zonedToUtc } from "../tz";
  * whole flow testable before any account is created.
  */
 
-const KEY = "pbs.store.v1";
+// Bump when the seeded services change, so an old demo in someone's browser
+// does not keep showing stale prices or durations.
+const KEY = "pbs.store.v2";
 const ADMIN_PASSWORD = import.meta.env.VITE_DEMO_ADMIN_PASSWORD ?? "pacho";
 
 interface Store {

@@ -42,7 +42,7 @@ const EMPTY_FORM: FormState = {
 };
 
 export function BookingFlow({ services, selected, onSelect }: Props) {
-  const { t, lang, fill, formatDate, formatTime, formatPrice } = useI18n();
+  const { t, lang, fill, formatDate, formatTime, formatPrice, formatDuration } = useI18n();
   const provider = getProvider();
 
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
@@ -222,7 +222,7 @@ export function BookingFlow({ services, selected, onSelect }: Props) {
                       <span className="block font-semibold text-cream">{service.name[lang]}</span>
                       <span className="mt-1 flex items-center gap-1.5 text-xs uppercase tracking-widest text-cream/40">
                         <Clock className="h-3 w-3" />
-                        {service.durationMin} {t.services.duration}
+                        {formatDuration(service.durationMin)}
                       </span>
                     </span>
                     <span className="whitespace-nowrap font-display text-xl text-gold">
@@ -463,12 +463,12 @@ export function BookingFlow({ services, selected, onSelect }: Props) {
 }
 
 function SelectedBadge({ service, onClear }: { service: Service; onClear: () => void }) {
-  const { lang, t } = useI18n();
+  const { lang, t, formatDuration } = useI18n();
   return (
     <div className="mb-6 flex flex-wrap items-center gap-3">
       <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-gold">
         {service.name[lang]}
-        <span className="text-gold/60">· {service.durationMin} {t.services.duration}</span>
+        <span className="text-gold/60">· {formatDuration(service.durationMin)}</span>
       </span>
       <button type="button" onClick={onClear} className="text-xs uppercase tracking-widest text-cream/40 underline-offset-4 hover:text-cream hover:underline">
         {t.booking.steps.service}
@@ -508,7 +508,7 @@ function Summary({
   atHome: boolean;
   cancelWindow: number;
 }) {
-  const { t, lang, fill, formatDate, formatTime, formatPrice } = useI18n();
+  const { t, lang, fill, formatDate, formatTime, formatPrice, formatDuration } = useI18n();
 
   return (
     <div className="mt-7 rounded-md border border-ink-700 bg-ink-950 p-5">
@@ -521,7 +521,7 @@ function Summary({
           {startsAt && (
             <p className="mt-1 text-sm text-cream/60">
               {formatDate(new Date(startsAt), { weekday: "long" })} {t.common.at}{" "}
-              {formatTime(new Date(startsAt))} · {service.durationMin} {t.services.duration}
+              {formatTime(new Date(startsAt))} · {formatDuration(service.durationMin)}
             </p>
           )}
           <p className="mt-1 flex items-center gap-1.5 text-xs text-cream/40">

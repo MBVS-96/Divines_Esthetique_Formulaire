@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function Services({ services, onSelect }: Props) {
-  const { t, lang, formatPrice } = useI18n();
+  const { t, lang, formatPrice, formatDuration } = useI18n();
   const salon = services.filter((s) => !s.atHome);
 
   return (
@@ -41,7 +41,7 @@ export function Services({ services, onSelect }: Props) {
               <div className="mt-5 flex items-center justify-between gap-3 border-t border-ink-700 pt-4">
                 <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-cream/40">
                   <Clock className="h-3.5 w-3.5" />
-                  {service.durationMin} {t.services.duration}
+                  {formatDuration(service.durationMin)}
                 </span>
                 <button type="button" className="btn-gold px-4 py-2 text-xs" onClick={() => onSelect(service)}>
                   {t.services.book}

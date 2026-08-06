@@ -23,8 +23,8 @@ BUSINESS
 - Address: Rue du Pré-Jérôme 12, 1205 Genève, Switzerland (Plainpalais)
 - Phone: +41 76 544 03 20 (click-to-call on mobile)
 - By appointment only — no walk-ins. Say this everywhere.
-- Services: Coupe 25 CHF / 30 min, Barbe 15 CHF / 20 min,
-  Coupe + Barbe 35 CHF / 45 min, and a VIP 24/7 at-home service priced on quote.
+- Services: Coupe 25 CHF / 60 min, Barbe 15 CHF / 30 min,
+  Coupe + Barbe 35 CHF / 90 min, and a VIP 24/7 at-home service priced on quote.
 
 STACK
 React 18 + Vite + TypeScript + Tailwind CSS + react-router-dom + lucide-react.
