@@ -52,9 +52,15 @@ export function Contact() {
                 <MessageCircle className="h-4 w-4" />
                 {t.contact.whatsapp}
               </a>
-              <a href={BUSINESS.instagram} target="_blank" rel="noreferrer" className="btn-outline">
+              <a
+                href={BUSINESS.instagram}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-outline lowercase tracking-wider"
+                aria-label={`${t.contact.instagram} — ${BUSINESS.instagramHandle}`}
+              >
                 <Instagram className="h-4 w-4" />
-                {t.contact.instagram}
+                {BUSINESS.instagramHandle}
               </a>
             </div>
           </div>

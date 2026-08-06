@@ -17,7 +17,8 @@ export const BUSINESS = {
   phoneDisplay: "+41 76 544 03 20",
   /** TODO: replace once the .ch domain mailbox exists. */
   email: import.meta.env.VITE_CONTACT_EMAIL ?? "contact@pachobarberstyle.ch",
-  instagram: import.meta.env.VITE_INSTAGRAM_URL ?? "https://instagram.com/",
+  instagram: import.meta.env.VITE_INSTAGRAM_URL ?? "https://www.instagram.com/pacho.barberstyle/",
+  instagramHandle: "@pacho.barberstyle",
   mapsQuery: "Rue du Pré-Jérôme 12, 1205 Genève",
   timezone: "Europe/Zurich",
 } as const;
