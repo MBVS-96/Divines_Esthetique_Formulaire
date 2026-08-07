@@ -4,6 +4,7 @@ import { useI18n } from "@/lib/i18n";
 import { BUSINESS } from "@/lib/config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { SectionLink } from "./SectionLink";
+import { Monogram } from "./Monogram";
 import { cn } from "@/lib/cn";
 
 const SECTIONS = [
@@ -33,10 +34,14 @@ export function Header() {
       )}
     >
       <div className="container-x flex h-16 items-center justify-between gap-4">
-        <SectionLink id="top" className="flex flex-col leading-none">
-          <span className="font-display text-xl tracking-[0.2em] text-cream">PACHO</span>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">
-            Barberstyle
+        <SectionLink id="top" className="flex items-center gap-3">
+          <Monogram className="h-9 w-9 shrink-0 text-gold" />
+          <span className="h-8 w-px bg-gold/40" aria-hidden />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-xl tracking-[0.2em] text-cream">PACHO</span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">
+              Barberstyle
+            </span>
           </span>
         </SectionLink>
 
